@@ -1,0 +1,19 @@
+@import url("https://fonts.cdnfonts.com/css/nitro-eagle-133309");
+
+body {
+  margin: 0;
+  background-color: darkslateblue;
+  min-height: 100vh;
+}
+h1 {
+  font-family: "Nitro Eagle", sans-serif;
+  text-align: center;
+}
+
+.title {
+  width: 100%;
+}
+
+.page {
+  padding-top: 10vh;
+}
