@@ -1,11 +1,16 @@
 import "./colorwindow.css";
+import { useState } from "react";
 import Answer from "./Answer";
 interface ColorWindowProps {
-  Red: number;
-  Green: number;
-  Blue: number;
+  Red: Number;
+  Green: Number;
+  Blue: Number;
 }
 function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
+  const [red, setRed] = useState("");
+  const [green, setGreen] = useState("");
+  const [blue, setBlue] = useState("");
+
   return (
     <div className="color-window">
       <div className="window-dec">
@@ -20,14 +25,21 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
         <div className="color">
           <div
             style={{
-              backgroundColor: `rgb(${Red}, ${Green}, ${Blue})`,
+              backgroundColor: `rgb(${Number(Red)}, ${Number(Green)}, ${Number(Blue)})`,
               width: "300px",
               height: "300px",
             }}
           ></div>
         </div>
 
-        <Answer></Answer>
+        <Answer
+          red={red}
+          green={green}
+          blue={blue}
+          onRedChange={setRed}
+          onGreenChange={setGreen}
+          onBlueChange={setBlue}
+        />
       </div>
     </div>
   );

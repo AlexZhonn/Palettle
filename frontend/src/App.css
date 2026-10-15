@@ -17,3 +17,13 @@ h1 {
 .page {
   padding-top: 10vh;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  text-align: center;
+}
