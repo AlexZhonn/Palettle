@@ -8,6 +8,7 @@ body {
 h1 {
   font-family: "Nitro Eagle", sans-serif;
   text-align: center;
+  font-size: 80px;
 }
 
 .title {
@@ -15,7 +16,7 @@ h1 {
 }
 
 .page {
-  padding-top: 10vh;
+  padding-top: 5vh;
 }
 
 input::-webkit-outer-spin-button,

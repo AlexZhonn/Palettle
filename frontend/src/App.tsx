@@ -37,35 +37,7 @@ function App() {
 
     startGame();
   }, []);
-  useEffect(() => {
-    async function evaluate() {
-      try {
-        const guesses = { red, green, blue };
 
-        for (const channel of ["red", "green", "blue"] as const) {
-          const response = await fetch(`/api/evaluate/${channel}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              [channel]: guesses[channel],
-            }),
-          });
-
-          const data = await response.json();
-
-          if (!response.ok) {
-            throw new Error(data.error ?? "Could not evaluate the guess.");
-          }
-
-          console.log(channel, data.feedback);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  });
   return (
     <div className="page">
       <div className="title">

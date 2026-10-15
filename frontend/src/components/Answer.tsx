@@ -18,7 +18,7 @@ function Answer({
   return (
     <div className="answer">
       <label>
-        # Red
+        Red
         <input
           type="text"
           inputMode="numeric"
@@ -37,7 +37,7 @@ function Answer({
       </label>
 
       <label>
-        # Green
+        Green
         <input
           type="text"
           inputMode="numeric"
@@ -56,7 +56,7 @@ function Answer({
       </label>
 
       <label>
-        # Blue
+        Blue
         <input
           type="text"
           inputMode="numeric"
