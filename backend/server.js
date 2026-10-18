@@ -38,7 +38,6 @@ app.post("/api/evaluate/:channel", (req, res) => {
     feedback = "decrease";
   }
 
-  console.log(feedback);
   return res.json({ channel, feedback });
 });
 

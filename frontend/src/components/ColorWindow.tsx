@@ -19,6 +19,7 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
   const [gameState, setGameState] = useState("inGame");
 
   const threshold = 6;
+  const API_URL = import.meta.env.API_URL;
   useEffect(() => {
     async function evaluate() {
       try {
@@ -35,7 +36,7 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
         setGuessNumber((current) => Math.min(current + 1, threshold));
         let allCorrect = true;
         for (const channel of ["red", "green", "blue"] as const) {
-          const response = await fetch(`/api/evaluate/${channel}`, {
+          const response = await fetch(`${API_URL}/api/evaluate/${channel}`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

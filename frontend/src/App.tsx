@@ -11,10 +11,11 @@ interface Color {
 function App() {
   const [color, setColor] = useState<Color | null>(null);
   const [error, setError] = useState("");
+  const API_URL = import.meta.env.API_BASE_URL;
   useEffect(() => {
     async function startGame() {
       try {
-        const response = await fetch("/api/start", {
+        const response = await fetch(`${API_URL}/api/start`, {
           method: "POST",
         });
 
