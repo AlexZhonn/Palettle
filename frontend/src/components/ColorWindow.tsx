@@ -124,9 +124,9 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
           //TODO: pass status down to here?
         />
         {gameState === "won" ? (
-          <div> you win!</div>
+          <div>YOU WIN!</div>
         ) : gameState === "lost" ? (
-          <div>you lost</div>
+          <div>AWWWW YOU LOST!</div>
         ) : (
           <div>
             Current Guesses : {guessNumber} / {threshold}

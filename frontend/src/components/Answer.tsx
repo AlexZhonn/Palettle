@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./Answer.css";
 import Arrow from "./Arrow";
 interface AnswerProps {
