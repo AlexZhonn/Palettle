@@ -17,9 +17,8 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
   const [greenStatus, setGreenStatus] = useState("");
   const [guessNumber, setGuessNumber] = useState(1);
   const [gameState, setGameState] = useState("inGame");
-
+  const API_URL = import.meta.env.API_BASE_URL;
   const threshold = 6;
-  const API_URL = import.meta.env.API_URL;
   useEffect(() => {
     async function evaluate() {
       try {
