@@ -21,6 +21,7 @@
   width: 500px;
   background-color: white;
   justify-content: space-around;
+  align-items: center;
 }
 
 .dots {

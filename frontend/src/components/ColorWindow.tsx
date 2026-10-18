@@ -12,9 +12,13 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
   const [green, setGreen] = useState("");
   const [blue, setBlue] = useState("");
   const [error, setError] = useState("");
-  const [redStatus, setRedStatus] = useState(0);
-  const [blueStatus, setBlueStatus] = useState(0);
-  const [greenStatus, setGreenStatus] = useState(0);
+  const [redStatus, setRedStatus] = useState("");
+  const [blueStatus, setBlueStatus] = useState("");
+  const [greenStatus, setGreenStatus] = useState("");
+  const [guessNumber, setGuessNumber] = useState(1);
+  const [gameState, setGameState] = useState("inGame");
+
+  const threshold = 6;
   useEffect(() => {
     async function evaluate() {
       try {
@@ -28,7 +32,8 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
           }
         }
         setError("");
-
+        setGuessNumber((current) => Math.min(current + 1, threshold));
+        let allCorrect = true;
         for (const channel of ["red", "green", "blue"] as const) {
           const response = await fetch(`/api/evaluate/${channel}`, {
             method: "POST",
@@ -45,7 +50,9 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
           if (!response.ok) {
             throw new Error(data.error ?? "Could not evaluate the guess.");
           }
-
+          if (data.feedback !== "correct") {
+            allCorrect = false;
+          }
           if (channel === "red") {
             setRedStatus(data.feedback);
           }
@@ -56,6 +63,11 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
           if (channel === "blue") {
             setBlueStatus(data.feedback);
           }
+        }
+        if (allCorrect) {
+          setGameState("won");
+        } else if (guessNumber >= threshold) {
+          setGameState("lost");
         }
       } catch (error) {
         console.error(error);
@@ -106,9 +118,31 @@ function ColorWindow({ Red, Green, Blue }: ColorWindowProps) {
           onRedChange={setRed}
           onGreenChange={setGreen}
           onBlueChange={setBlue}
+          RedStatus={redStatus}
+          GreenStatus={greenStatus}
+          BlueStatus={blueStatus}
           //TODO: pass status down to here?
         />
-        {error && <p role="alert">{error}</p>}
+        {gameState === "won" ? (
+          <div> you win!</div>
+        ) : gameState === "lost" ? (
+          <div>you lost</div>
+        ) : (
+          <div>
+            Current Guesses : {guessNumber} / {threshold}
+          </div>
+        )}
+
+        {error && (
+          <p
+            role="alert"
+            style={{
+              color: "red",
+            }}
+          >
+            {error}
+          </p>
+        )}
       </div>
     </div>
   );

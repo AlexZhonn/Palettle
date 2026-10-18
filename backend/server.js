@@ -13,7 +13,6 @@ app.post("/api/evaluate/:channel", (req, res) => {
   }
 
   const input = req.body?.[channel];
-  console.log(input);
   // Accept numbers or digit strings, but reject empty guesses.
   if (
     typeof input !== "number" &&
@@ -39,6 +38,7 @@ app.post("/api/evaluate/:channel", (req, res) => {
     feedback = "decrease";
   }
 
+  console.log(feedback);
   return res.json({ channel, feedback });
 });
 

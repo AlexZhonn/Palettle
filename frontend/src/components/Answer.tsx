@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import "./Answer.css";
+import Arrow from "./Arrow";
 interface AnswerProps {
   red: string;
   green: string;
@@ -6,6 +8,9 @@ interface AnswerProps {
   onRedChange: (value: string) => void;
   onGreenChange: (value: string) => void;
   onBlueChange: (value: string) => void;
+  RedStatus: string;
+  GreenStatus: string;
+  BlueStatus: string;
 }
 function Answer({
   red,
@@ -14,64 +19,118 @@ function Answer({
   onRedChange,
   onGreenChange,
   onBlueChange,
+  RedStatus,
+  GreenStatus,
+  BlueStatus,
 }: AnswerProps) {
   return (
     <div className="answer">
       <label>
         Red
-        <input
-          type="text"
-          inputMode="numeric"
-          value={red}
-          onChange={(event) => {
-            const value = event.target.value;
+        <div className="inputs-arrows">
+          <input
+            type="text"
+            inputMode="numeric"
+            value={red}
+            onChange={(event) => {
+              const value = event.target.value;
 
-            if (
-              value === "" ||
-              (/^\d{1,3}$/.test(value) && Number(value) <= 255)
-            ) {
-              onRedChange(value);
+              if (
+                value === "" ||
+                (/^\d{1,3}$/.test(value) && Number(value) <= 255)
+              ) {
+                onRedChange(value);
+              }
+            }}
+            disabled={RedStatus === "correct"}
+            style={
+              RedStatus === "correct"
+                ? {
+                    background: "green",
+                  }
+                : {
+                    background: "white",
+                  }
             }
-          }}
-        />
+          />
+          {RedStatus === "increase" ? (
+            <Arrow direction={true}></Arrow>
+          ) : RedStatus === "decrease" ? (
+            <Arrow direction={false}></Arrow>
+          ) : null}
+        </div>
       </label>
 
       <label>
         Green
-        <input
-          type="text"
-          inputMode="numeric"
-          value={green}
-          onChange={(event) => {
-            const value = event.target.value;
+        <div className="inputs-arrows">
+          <input
+            type="text"
+            inputMode="numeric"
+            value={green}
+            onChange={(event) => {
+              const value = event.target.value;
 
-            if (
-              value === "" ||
-              (/^\d{1,3}$/.test(value) && Number(value) <= 255)
-            ) {
-              onGreenChange(value);
+              if (
+                value === "" ||
+                (/^\d{1,3}$/.test(value) && Number(value) <= 255)
+              ) {
+                onGreenChange(value);
+              }
+            }}
+            disabled={GreenStatus === "correct"}
+            style={
+              GreenStatus === "correct"
+                ? {
+                    background: "green",
+                  }
+                : {
+                    background: "white",
+                  }
             }
-          }}
-        />
+          />
+          {GreenStatus === "increase" ? (
+            <Arrow direction={true}></Arrow>
+          ) : RedStatus === "decrease" ? (
+            <Arrow direction={false}></Arrow>
+          ) : null}
+        </div>
       </label>
 
       <label>
         Blue
-        <input
-          type="text"
-          inputMode="numeric"
-          value={blue}
-          onChange={(event) => {
-            const value = event.target.value;
+        <div className="inputs-arrows">
+          <input
+            type="text"
+            inputMode="numeric"
+            value={blue}
+            onChange={(event) => {
+              const value = event.target.value;
 
-            if (
-              value === "" ||
-              (/^\d{1,3}$/.test(value) && Number(value) <= 255)
-            ) {
-              onBlueChange(value);
+              if (
+                value === "" ||
+                (/^\d{1,3}$/.test(value) && Number(value) <= 255)
+              ) {
+                onBlueChange(value);
+              }
+            }}
+            disabled={BlueStatus === "correct"}
+            style={
+              BlueStatus === "correct"
+                ? {
+                    background: "green",
+                  }
+                : {
+                    background: "white",
+                  }
             }
-          }}
-        />
+          />
+          {BlueStatus === "increase" ? (
+            <Arrow direction={true}></Arrow>
+          ) : RedStatus === "decrease" ? (
+            <Arrow direction={false}></Arrow>
+          ) : null}
+        </div>
       </label>
     </div>
   );
