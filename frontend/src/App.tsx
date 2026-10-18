@@ -15,7 +15,6 @@ function App() {
   useEffect(() => {
     async function startGame() {
       try {
-        console.log(API_URL);
         const response = await fetch(`${API_URL}/api/start`, {
           method: "POST",
         });
@@ -27,7 +26,6 @@ function App() {
         }
 
         const data = await response.json();
-        console.log(data);
         setColor(data);
       } catch (error) {
         console.error(error);
